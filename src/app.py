@@ -1,5 +1,5 @@
 from vkbottle.bot import Bot
-from vkbottle.tools import LoopWrapper, load_blueprints_from_package
+from vkbottle.tools import load_blueprints_from_package
 
 from src.config import BOT_TOKEN
 from src.initialize import setup_db
@@ -26,5 +26,4 @@ def setup_middlewares(bot: Bot):
 
 
 bot = init_bot()
-bot.loop_wrapper = LoopWrapper()
 bot.loop_wrapper.on_startup.append(setup_db())
