@@ -1,26 +1,26 @@
-from vkbottle.bot import Bot
+from vkbottle.user import User
 from vkbottle.tools import load_blueprints_from_package
 
-from src.config import BOT_TOKEN
+from src.config import USERBOT_TOKEN
 from src.initialize import setup_db
 
 
-def init_bot() -> "Bot":
-    bot = Bot(token=BOT_TOKEN)
-    setup_blueprints(bot)
-    setup_middlewares(bot)
-    return bot
+def init_user() -> "User":
+    user = User(token=USERBOT_TOKEN)
+    setup_blueprints(user)
+    setup_middlewares(user)
+    return user
 
 
-def setup_blueprints(bot: Bot):
+def setup_blueprints(user: User):
     for bp in load_blueprints_from_package("src/blueprints"):
-        bp.load(bot)
+        bp.load(user)
 
 
-def setup_middlewares(bot: Bot):
+def setup_middlewares(user: User):
     for bp in load_blueprints_from_package("src/middlewares"):
-        bp.load(bot)
+        bp.load(user)
 
 
-bot = init_bot()
-bot.loop_wrapper.on_startup.append(setup_db())
+user = init_user()
+user.loop_wrapper.on_startup.append(setup_db())

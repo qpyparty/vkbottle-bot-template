@@ -1,4 +1,4 @@
-from src.app import bot
+from src.app import user
 
 
-bot.run_forever()
+user.run_forever()
